@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.konradkowalczyk.alcopart.fragments.AlkoPercentFragment;
+import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
 import com.konradkowalczyk.alcopart.fragments.FavouriteFragment;
 import com.konradkowalczyk.alcopart.fragments.LibFragment;
 import com.konradkowalczyk.alcopart.fragments.MainFragment;
