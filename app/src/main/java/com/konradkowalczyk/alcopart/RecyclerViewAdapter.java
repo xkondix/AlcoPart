@@ -15,7 +15,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String[] titels;
 
 
-    interface Listener
+    public interface Listener
     {
         void onClick(int position);
     }
@@ -49,6 +49,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new ViewHolder(cardView);
     }
 
+
+    //widok RecyclerView wywołuje te metode jeżeli chce ponownie użyć lub użyć obiektu viewHolder tylko z innymi danymi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         CardView cardView = holder.cardView;
