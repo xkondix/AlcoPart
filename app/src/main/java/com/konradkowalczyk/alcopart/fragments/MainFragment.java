@@ -21,8 +21,14 @@ import com.konradkowalczyk.alcopart.RecyclerViewAdapter;
  */
 public class MainFragment extends Fragment {
 
-    static String[] list = {"Kinematyka","Mechanika","Ruch Falowy","Fizyka Jądrowa","Zjawisko Fotoelektryczne"};
-    static Class[] classes = {BeerFragment.class};
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle("AkloPart");
+
+    }
 
     public MainFragment() {
         // Required empty public constructor
@@ -33,28 +39,28 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        RecyclerView menuView = (RecyclerView) inflater.inflate(
-                R.layout.fragment_recycler_view,container,false);
+//        RecyclerView menuView = (RecyclerView) inflater.inflate(
+//                R.layout.fragment_recycler_view,container,false);
 
-        //stworzenie i ustawienie adaptera
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list);
-        menuView.setAdapter(adapter);
+//        //stworzenie i ustawienie adaptera
+//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list);
+//        menuView.setAdapter(adapter);
+//
+//        //dodanie jak ma wygladac layout (cardView - rodzaj wyswietlania)
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//        menuView.setLayoutManager(layoutManager);
+//
+//        //onClick - reakcja na przycisniecie cardView
+//        adapter.setListener(new RecyclerViewAdapter.Listener() {
+//            @Override
+//            public void onClick(int position) {
+//
+//                Intent intent = new Intent(getActivity(), classes[position] );
+//                getActivity().startActivity(intent);
+//            }
+//        });
 
-        //dodanie jak ma wygladac layout (cardView - rodzaj wyswietlania)
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        menuView.setLayoutManager(layoutManager);
-
-        //onClick - reakcja na przycisniecie cardView
-        adapter.setListener(new RecyclerViewAdapter.Listener() {
-            @Override
-            public void onClick(int position) {
-
-                Intent intent = new Intent(getActivity(), classes[position] );
-                getActivity().startActivity(intent);
-            }
-        });
-
-        return menuView;
+        return inflater.inflate(R.layout.fragment_search, container, false);
 
     }
 }

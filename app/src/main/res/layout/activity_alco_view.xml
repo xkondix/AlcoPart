@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AlcoViewActivity">
+
+    <ImageView
+        android:id="@+id/photo_alco"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        ></ImageView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/pojemnosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/kod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/kolekcja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <CheckBox
+        android:id="@+id/favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favourite"
+        android:onClick="onFavouriteClicked"
+        ></CheckBox>
+
+</LinearLayout>

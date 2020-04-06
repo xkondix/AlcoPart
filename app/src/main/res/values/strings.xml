@@ -10,4 +10,7 @@
     <string name="wyszukajFrag">Wyszukaj piwo</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="piwo">piwo</string>
+    <string name="favourite">Ulubione</string>
+
 </resources>
