@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="wyszukaj_alco">wyszukaj_alco
+
+        <item>Piwo</item>
+        <item>Wódka</item>
+        <item>Whisky</item>
+        <item>Rum</item>
+        <item>Gin</item>
+        <item>Wino</item>
+        <item>Szampan</item>
+        <item>Tequila</item>
+
+    </string-array>
+</resources>
+
+

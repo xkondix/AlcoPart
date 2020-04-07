@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.navigator_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
         //stworzenie bazowego fragmentu
         Fragment fragment = new MainFragment();

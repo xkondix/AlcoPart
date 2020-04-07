@@ -60,13 +60,13 @@ public class AlcoViewActivity extends AppCompatActivity {
             n.setText(name);
 
             TextView t = findViewById(R.id.type);
-            t.setText("typ - " + type);
+            t.setText("typ - " + getResources().getString(Integer.parseInt(type)));
 
             TextView b = findViewById(R.id.brand);
             b.setText("marka - " + brand);
 
             TextView c = findViewById(R.id.pojemnosc);
-            c.setText("pojemnosc - " + capacity);
+            c.setText("pojemnosc - " + capacity+"ml");
 
             TextView k = findViewById(R.id.kod);
             k.setText("kod - " + number);

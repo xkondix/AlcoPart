@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/mainFrag"
-            android:icon="@mipmap/beer_round"
+            android:icon="@mipmap/iconbeer_round"
             android:title="@string/stronaG"
             android:checked="true"
-            />
+            app:showAsAction="always" />
 
         <item
             android:id="@+id/wyszukajFrag"
-            android:icon="@mipmap/beer_round"
+            android:icon="@mipmap/iconbeer_round"
             android:title="@string/wyszukajFrag"
-            />
+            app:showAsAction="always" />
 
         <item
             android:id="@+id/klaserFrag"
-            android:icon="@mipmap/beer_round"
+            android:icon="@mipmap/iconbeer_round"
             android:title="@string/klaser"
+            app:showAsAction="always"
             />
 
         <item
             android:id="@+id/trzeFrag"
-            android:icon="@mipmap/beer_round"
+            android:icon="@mipmap/iconbeer_round"
             android:title="@string/trzeFrag"
+            app:showAsAction="always"
             />
 
         <item
             android:id="@+id/ulubioneFrag"
-            android:icon="@mipmap/beer_round"
+            android:icon="@mipmap/iconbeer_round"
             android:title="@string/ulubioneFrag"
+            app:showAsAction="always"
             />
 
 
