@@ -28,15 +28,18 @@ import java.util.List;
 
 public class LibFragment extends Fragment {
 
+    //tablice
+    private String[] nameAlco;
+    private Integer[] idIntent;
+    private int[] resId;
+    private String[] brandAlco;
 
-    public String[] nameAlco;
-    public Integer[] idIntent;
-    public int[] resId;
-    public String[] brandAlco;
-
+    //baza danych
     private SQLiteOpenHelper alcoDatabaseHelper;
     private SQLiteDatabase db;
     private Cursor cursor;
+
+    //łatwiej dodawać do list
     private List<Integer> res = new ArrayList<>();
     private List<String> name = new ArrayList<>();
     private List<Integer> id = new ArrayList<>();
@@ -60,20 +63,23 @@ public class LibFragment extends Fragment {
 
             cursor = db.query("ALCOHOL",
                     new String[]{"_id","NAME","BRAND","IMAGE_ID"},
-                    null,null, //wszystkie, ktre mamy w kolekcji COLLECT == 1
+                    "COLLECT = ?",new String[]{"1"}, //wszystkie, ktre mamy w kolekcji COLLECT == 1
                     null,null,null);
 
-            cursor.moveToFirst();
 
 
-            while(cursor.moveToNext()) //blad bo 1 elementu nie bierze, potem zmienie
-            {
+            try {
 
-                id.add(cursor.getInt(0));
-                name.add(cursor.getString(1));
-                brand.add(cursor.getString(2));
-                res.add(cursor.getInt(3));
+                if (cursor.moveToFirst()){
+                    do{
+                        id.add(cursor.getInt(0));
+                        name.add(cursor.getString(1));
+                        brand.add(cursor.getString(2));
+                        res.add(cursor.getInt(3));
 
+                    }while(cursor.moveToNext());
+                }
+            } catch (SQLiteException e) {
             }
             //resId = res.stream().mapToInt(i -> i).toArray(); api za male na streamy i lambdy?
 
@@ -92,6 +98,8 @@ public class LibFragment extends Fragment {
 
 
         }catch (SQLiteException e) {
+            Toast toast = Toast.makeText(getActivity(),"Baza danych nie dziala",Toast.LENGTH_SHORT);
+            toast.show();
         }
 
 
@@ -109,9 +117,6 @@ public class LibFragment extends Fragment {
                 R.layout.fragment_recycler_view,container,false);
 
 
-        System.out.println(nameAlco);
-        System.out.println(brandAlco);
-        System.out.println(resId);
         //stworzenie i ustawienie adaptera
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(nameAlco,resId,brandAlco);
         menuView.setAdapter(adapter);
@@ -137,9 +142,20 @@ public class LibFragment extends Fragment {
     }
 
 
+
+
     @Override
     public void onDestroy(){
         super.onDestroy();
+        if(db.isOpen())
+        {
+            db.close();
+        }
+
+        if(!cursor.isClosed())
+        {
+            cursor.close();
+        }
     }
 
     private class FindAlco extends AsyncTask<Void,Void,Boolean>
@@ -220,8 +236,7 @@ public class LibFragment extends Fragment {
             if(!success)
             {
 
-                Toast toast = Toast.makeText(getActivity(),"Baza danych nie dziala",Toast.LENGTH_SHORT);
-                toast.show();
+
             }
         }
     }

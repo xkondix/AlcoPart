@@ -59,17 +59,9 @@ public class AlcoDatabaseHelper extends SQLiteOpenHelper {
                     + "IMAGE_ID INTEGER);");
 
         insertAlco(db,"Heineken 0.0",R.string.piwo,"Heineken",
-                "5900699102663",500,0,1
-                ,R.drawable.ic_launcher_foreground);
-            insertAlco(db,"Heineken 0.0",R.string.piwo,"Heineken",
-                    "5900699102663",500,0,1
-                    ,R.drawable.ic_launcher_foreground);
-            insertAlco(db,"Heineken 0.0",R.string.piwo,"Heineken",
-                    "5900699102663",500,0,1
-                    ,R.drawable.ic_launcher_foreground);
-            insertAlco(db,"Heineken 0.0",R.string.piwo,"Heineken",
-                    "5900699102663",500,0,1
-                    ,R.drawable.ic_launcher_foreground);
+                "5900699102663",500,0,0
+                ,R.drawable.heineken_0_500);
+
         }
     }
 

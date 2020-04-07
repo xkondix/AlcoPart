@@ -36,6 +36,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(view);
             this.cardView=view;
         }
+
+
     }
 
     public RecyclerViewAdapter(String[] nameAlco,int[] resId,String[] brandAlco)
@@ -61,20 +63,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
+
+
     //widok RecyclerView wywołuje te metode jeżeli chce ponownie użyć lub użyć obiektu viewHolder tylko z innymi danymi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         CardView cardView = holder.cardView;
         TextView textView = (TextView) cardView.findViewById(R.id.nazwa);
         textView.setText(nameAlco[position]);
-        TextView textView2 = (TextView) cardView.findViewById(R.id.marka);
-        textView2.setText(brandAlco[position]);
 
         ImageView imageView = cardView.findViewById(R.id.photo_alco);
-      //  Drawable drawable =
-        //        ContextCompat.getDrawable(cardView.getContext(), resId[position]);
-        //imageView.setImageDrawable(drawable);
-        //imageView.setContentDescription(nameAlco[position]);
+        Drawable drawable =
+               ContextCompat.getDrawable(cardView.getContext(), resId[position]);
+        imageView.setImageDrawable(drawable);
+        imageView.setContentDescription(nameAlco[position]);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +91,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+    public void updateData(String[] nameAlco,int[] resId,String[] brandAlco)
+    {
+        this.nameAlco=nameAlco;
+        this.resId=resId;
+        this.brandAlco=brandAlco;
+    }
+
     @Override
     public int getItemCount() {
         return nameAlco.length;
     }
+
 
 
 

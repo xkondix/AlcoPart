@@ -74,9 +74,9 @@ public class AlcoViewActivity extends AppCompatActivity {
             TextView a = findViewById(R.id.kolekcja);
             a.setText("wypite - " + (collect ? "tak" : "nie"));
 
-  //          ImageView pA = findViewById(R.id.photo_alco);
-//            pA.setImageResource(photoId);
-    //        pA.setContentDescription(name);
+            ImageView pA = findViewById(R.id.photo_alco);
+            pA.setImageResource(photoId);
+            pA.setContentDescription(name);
 
             //ustainie CheckBoxa
             CheckBox favouriteBox = findViewById(R.id.favourite);
@@ -89,7 +89,7 @@ public class AlcoViewActivity extends AppCompatActivity {
         }
         } catch (SQLiteException e)
         {
-            Toast toast = Toast.makeText(this,"Baza danych nie dziala",Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(AlcoViewActivity.this,"Baza danych nie dziala",Toast.LENGTH_SHORT);
             toast.show();
 
         }
