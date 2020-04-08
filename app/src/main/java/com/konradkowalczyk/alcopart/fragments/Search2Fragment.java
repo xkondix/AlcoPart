@@ -189,6 +189,8 @@ public class Search2Fragment extends Fragment {
 
     public void setCursor()
     {
+
+
         String tab[] = query.split("==");
         int counter = 0;
         //name brand type pojemnosc
@@ -196,12 +198,16 @@ public class Search2Fragment extends Fragment {
         Map<String, String> map  = new TreeMap<>();
         if(!tab[0].equals("None"))
         {
-            map.put("Name = ?",tab[0]);
+            String name = tab[0].toLowerCase();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).trim();
+            map.put("Name = ?",name);
             counter++;
         }
         if(!tab[1].equals("None"))
         {
-            map.put("BRAND = ?",tab[1]);
+            String brand = tab[1].toLowerCase();
+            brand = brand.substring(0, 1).toUpperCase() + brand.substring(1).trim();
+            map.put("BRAND = ?",brand);
             counter++;
         }
         if(!tab[2].equals("None"))

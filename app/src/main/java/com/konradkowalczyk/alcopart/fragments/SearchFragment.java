@@ -89,8 +89,11 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
         }
 
 
+
         //SQLite nie rozróżnia dużych i małych liter
         String query = getName+ "==" + getBrand+"==" + getType +"=="+ getPoje;
+
+        System.out.println(query);
 
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         intent.putExtra(AlcoViewActivity.EXTRA_DRINKID, query);
