@@ -14,22 +14,48 @@
         android:id="@+id/wyszukaj_nazwa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="15dp"
         android:hint="@string/wyszukaj_nazwa"/>
+
+    <EditText
+        android:id="@+id/wyszukaj_marka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/wyszukaj_marka"/>
 
 
     <EditText
         android:id="@+id/wyszukaj_pojemnosc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:hint="@string/wyszukaj_pojemnosc"/>
 
     <Spinner
         android:id="@+id/wyszukaj_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:drawSelectorOnTop="true"
         android:entries="@array/wyszukaj_alco">
 
-    </Spinner></LinearLayout>
+    </Spinner>
+
+    <Button
+        android:id="@+id/wyszukaj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/szukaj"
+        ></Button>
+    <!--    tylko w activity on click zadziala-->
+    <!--        android:onClick="omWyszukajClicked"-->
+
+    <ImageView
+        android:id="@+id/happy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/beers"
+        ></ImageView>
+
+</LinearLayout>

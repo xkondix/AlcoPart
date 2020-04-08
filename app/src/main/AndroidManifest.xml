@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/beer_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AlcoViewActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".AlcoViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

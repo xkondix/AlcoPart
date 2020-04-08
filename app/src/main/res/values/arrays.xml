@@ -3,6 +3,7 @@
     <string-array
         name="wyszukaj_alco">wyszukaj_alco
 
+        <item>None</item>
         <item>Piwo</item>
         <item>Wódka</item>
         <item>Whisky</item>

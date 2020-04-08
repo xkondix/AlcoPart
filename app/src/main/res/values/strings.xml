@@ -14,5 +14,7 @@
     <string name="favourite">Ulubione</string>
     <string name="wyszukaj_nazwa">nazwa</string>
     <string name="wyszukaj_pojemnosc">pojemność</string>
+    <string name="wyszukaj_marka">marka</string>
+    <string name="szukaj">szukaj</string>
 
 </resources>
