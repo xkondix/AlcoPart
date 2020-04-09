@@ -62,6 +62,38 @@ public class AlcoDatabaseHelper extends SQLiteOpenHelper {
                 "5900699102663",500,0,0
                 ,R.drawable.heineken_0_500);
 
+        insertAlco(db,"Tyskie Gronie Jasne",R.string.piwo,"Tyskie",
+                    "5901359000237",500,0,0
+                    ,R.drawable.tyskie_gronie_piwo_jasne_500);
+
+        insertAlco(db,"Tyskie Gronie Jasne",R.string.piwo,"Tyskie",
+                    "5901359000312",330,0,0
+                    ,R.drawable.tyskie_gronie_piwo_jasne_330);
+
+        insertAlco(db,"Bacardi Superior",R.string.rum,"Bacardi",
+                    "5010677014205",700,0,0
+                    ,R.drawable.bacardi_superior_700);
+
+        insertAlco(db,"Bacardi Carta Blanca",R.string.rum,"Bacardi",
+                    "5010677013147",700,0,0
+                    ,R.drawable.bacardi_carta_blanca_700);
+
+        insertAlco(db,"Bacardi Carta Negra",R.string.rum,"Bacardi",
+                    "5010677039093",700,0,0
+                    ,R.drawable.bacardi_carta_blanca_700);
+
+        insertAlco(db,"Bacardi Mojito",R.string.rum,"Bacardi",
+                    "5010677211079",700,0,0
+                    ,R.drawable.bacardi_mohito_700);
+
+        insertAlco(db,"Captain Jack",R.string.piwo,"Captain Jack",
+                    "5901359084084",400,0,0
+                    ,R.drawable.capitan_jack_400);
+
+        insertAlco(db,"Captain Jack",R.string.piwo,"Captain Jack",
+                    "5901359094243",500,0,0
+                    ,R.drawable.captain_jack_500);
+
         }
     }
 

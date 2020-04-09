@@ -198,9 +198,18 @@ public class Search2Fragment extends Fragment {
         Map<String, String> map  = new TreeMap<>();
         if(!tab[0].equals("None"))
         {
-            String name = tab[0].toLowerCase();
-            name = name.substring(0, 1).toUpperCase() + name.substring(1).trim();
-            map.put("Name = ?",name);
+            String name[] = tab[0].toLowerCase().split(" ");
+            StringBuilder nameBuilder = new StringBuilder();
+            for(int i = 0; i<name.length;i++)
+            {
+                nameBuilder.append(name[i].substring(0, 1).toUpperCase() + name[i].substring(1).trim());
+                if(i<name.length-1)
+                {
+                    nameBuilder.append(" ");
+                }
+            }
+            //String.join(" ",name); api?
+            map.put("Name = ?",nameBuilder.toString());
             counter++;
         }
         if(!tab[1].equals("None"))

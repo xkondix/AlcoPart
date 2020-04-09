@@ -120,6 +120,8 @@ public class MainFragment extends Fragment {
                 R.layout.fragment_recycler_view,container,false);
 
 
+
+
         //stworzenie i ustawienie adaptera
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(nameAlco,resId,brandAlco);
         menuView.setAdapter(adapter);

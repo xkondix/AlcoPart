@@ -1,18 +1,26 @@
 package com.konradkowalczyk.alcopart;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -20,6 +28,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String[] nameAlco;
     private int[] resId;
     private String[] brandAlco;
+
+    //animation
+    private boolean on_attach = true;
+    long DURATION = 500;
 
 
     public interface Listener
@@ -38,6 +50,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
 
+
+
     }
 
     public RecyclerViewAdapter(String[] nameAlco,int[] resId,String[] brandAlco)
@@ -46,6 +60,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.resId=resId;
         this.brandAlco=brandAlco;
     }
+
+
 
     public void setListener(Listener listener)
     {
@@ -59,8 +75,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .inflate(R.layout.card_view_item,parent,false);
         return new ViewHolder(cardView);
     }
-
-
 
 
 
@@ -88,8 +102,52 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            setAnimation(holder.itemView, position);
+//        }
     }
+
+//    @Override
+//    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+//
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                Log.d(TAG, "onScrollStateChanged: Called " + newState);
+//                on_attach = false;
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//        });
+//
+//        super.onAttachedToRecyclerView(recyclerView);
+//    }
+//
+//    private void setAnimation(View view, int position) {
+//        if(!on_attach){
+//            position = -1;
+//        }
+//
+//        boolean isNotFirstItem = (position == -1);
+//        position++;
+//        view.setAlpha(0.f);
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 0.f, 0.5f, 1.0f, 2.0f);
+//        ObjectAnimator.ofFloat(view, "alpha", 0.f).start();
+//        animator.setStartDelay(isNotFirstItem ? DURATION / 2 : (position * DURATION / 3));
+//        animator.setDuration(500);
+//        animatorSet.play(animator);
+//        animator.start();
+//    }
+
+
+//    @Override
+//    public void onViewDetachedFromWindow(RecyclerViewAdapter.ViewHolder viewHolder)
+//    {
+//        super.onViewDetachedFromWindow(viewHolder);
+//        viewHolder.itemView.clearAnimation();
+//    }
+
+
 
     public void updateData(String[] nameAlco,int[] resId,String[] brandAlco)
     {
@@ -102,6 +160,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return nameAlco.length;
     }
+
+
+
 
 
 
