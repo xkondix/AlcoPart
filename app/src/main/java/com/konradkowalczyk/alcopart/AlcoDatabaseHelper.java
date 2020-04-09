@@ -94,6 +94,33 @@ public class AlcoDatabaseHelper extends SQLiteOpenHelper {
                     "5901359094243",500,0,0
                     ,R.drawable.captain_jack_500);
 
+        insertAlco(db,"Captain Jack",R.string.piwo,"Captain Jack",
+                    "5901359094458",400,0,0
+                    ,R.drawable.captain_jack_orange_400);
+
+            insertAlco(db,"Żubr Piwo Jasne",R.string.piwo,"Żubr",
+                    "5901359272146",650,0,0
+                    ,R.drawable.zubr_jasne_650);
+
+            insertAlco(db,"Żubrówka Biała",R.string.wódka,"Żubrówka",
+                    "5900343001892",500,0,0
+                    ,R.drawable.zubrowka_biala_500);
+
+            insertAlco(db,"Finlandia",R.string.wódka,"Finlandia",
+                    "6412709021776",700,0,0
+                    ,R.drawable.finlandia_700);
+
+            insertAlco(db,"Finlandia Blackcurant",R.string.wódka,"Finlandia",
+                    "5099873001899",500,0,0
+                    ,R.drawable.finlandia_blackcurant_500);
+
+            insertAlco(db,"Ballantines Finest",R.string.whisky,"Ballantines",
+                    "5010106113127",700,0,0
+                    ,R.drawable.ballentaise_fintes_700);
+
+            insertAlco(db,"Stroh 80",R.string.rum,"Stroh",
+                    "9001700000025",700,0,0
+                    ,R.drawable.stroh_80_700);
         }
     }
 

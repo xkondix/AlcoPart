@@ -17,5 +17,7 @@
     <string name="wyszukaj_pojemnosc">pojemność</string>
     <string name="wyszukaj_marka">marka</string>
     <string name="szukaj">szukaj</string>
+    <string name="wódka">wódka</string>
+    <string name="whisky">whisky</string>
 
 </resources>
