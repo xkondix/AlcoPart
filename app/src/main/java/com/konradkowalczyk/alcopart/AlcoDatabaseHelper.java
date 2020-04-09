@@ -80,7 +80,7 @@ public class AlcoDatabaseHelper extends SQLiteOpenHelper {
 
         insertAlco(db,"Bacardi Carta Negra",R.string.rum,"Bacardi",
                     "5010677039093",700,0,0
-                    ,R.drawable.bacardi_carta_blanca_700);
+                    ,R.drawable.bacardi_carta_negra_700ml);
 
         insertAlco(db,"Bacardi Mojito",R.string.rum,"Bacardi",
                     "5010677211079",700,0,0
