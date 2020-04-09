@@ -39,6 +39,12 @@
         ></TextView>
 
     <TextView
+        android:id="@+id/percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+    <TextView
         android:id="@+id/kod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

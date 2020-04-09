@@ -34,7 +34,7 @@ public class AlcoViewActivity extends AppCompatActivity {
 
         //kursory sluza do zapisu i odczytu z bazy SQLite, cos ala obiekty ResultSet z JDBC
         Cursor cursor = db.query("ALCOHOL",
-                new String[]{"NAME","TYPE","BRAND","NUMBER","CAPACITY","FAVOURITE","COLLECT","IMAGE_ID"},
+                new String[]{"NAME","TYPE","BRAND","NUMBER","CAPACITY","PERCENT","FAVOURITE","COLLECT","IMAGE_ID"},
                 "_id = ?",
                 new String[] {Integer.toString(alcoId)},
                 null,null,null);
@@ -50,9 +50,10 @@ public class AlcoViewActivity extends AppCompatActivity {
               String brand = cursor.getString(2);
               String number = cursor.getString(3);
               String capacity = cursor.getString(4);
-              boolean favourite = (cursor.getInt(5) == 1);
-              boolean collect = (cursor.getInt(6) == 1);
-              int photoId = cursor.getInt(7);
+              String percent = cursor.getString(5);
+              boolean favourite = (cursor.getInt(6) == 1);
+              boolean collect = (cursor.getInt(7) == 1);
+              int photoId = cursor.getInt(8);
 
 
             //dodawanie wartosci do xml
@@ -67,6 +68,9 @@ public class AlcoViewActivity extends AppCompatActivity {
 
             TextView c = findViewById(R.id.pojemnosc);
             c.setText("pojemnosc - " + capacity+"ml");
+
+            TextView per = findViewById(R.id.percent);
+            per.setText("procenty - " + percent+"%");
 
             TextView k = findViewById(R.id.kod);
             k.setText("kod - " + number);
