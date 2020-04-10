@@ -22,13 +22,16 @@ import com.konradkowalczyk.alcopart.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Dodanie paska aktywności
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new SearchFragment();
                 break;
             case R.id.klaserFrag:
-                fragment = new LibFragment();
+                fragment = new LibFragment(toolbar);
                 break;
             case R.id.ulubioneFrag:
                 fragment = new FavouriteFragment();

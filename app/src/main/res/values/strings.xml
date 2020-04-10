@@ -19,5 +19,8 @@
     <string name="szukaj">szukaj</string>
     <string name="wódka">wódka</string>
     <string name="whisky">whisky</string>
+    <string name="scan_kolekcja">Skanuj</string>
+    <string name="send_kolekcja">send</string>
+    <string name="tittle">Send your collect</string>
 
 </resources>
