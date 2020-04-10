@@ -44,14 +44,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
         if(currentApiVersion >=  Build.VERSION_CODES.M)
         {
-            if(checkPermission())
-            {
-                Toast.makeText(getApplicationContext(), "Permission already granted!", Toast.LENGTH_LONG).show();
-            }
-            else
+            if(!checkPermission())
             {
                 requestPermission();
             }
+           
         }
 
     }
