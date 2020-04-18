@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.alco.AlcoDialogFragment"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj Alko"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:id="@+id/heading"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:hint="ile procent?"
+            android:id="@+id/procenty"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/procenty"
+            android:layout_marginTop="20dp"
+            android:hint="ile ml?"
+            android:inputType="number"
+            android:id="@+id/ml"/>
+
+        <TimePicker
+            android:id="@+id/time"
+            android:layout_below="@id/ml"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></TimePicker>
+
+        <DatePicker
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/time"></DatePicker>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:layout_below="@id/data"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:id="@+id/ok"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANULUJ"
+            android:layout_below="@id/data"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="20dp"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:id="@+id/cancel"/>
+
+    </RelativeLayout>
+
+
+
+</ScrollView>

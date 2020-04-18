@@ -22,5 +22,7 @@
     <string name="scan_kolekcja">Skanuj</string>
     <string name="send_kolekcja">send</string>
     <string name="tittle">Send your collect</string>
+    <string name="dodajAlco">Dodaj alkochol</string>
+    <string name="podajdane">Podaj Dane</string>
 
 </resources>

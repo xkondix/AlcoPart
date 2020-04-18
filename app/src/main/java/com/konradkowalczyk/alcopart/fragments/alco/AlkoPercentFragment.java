@@ -51,7 +51,7 @@ public class AlkoPercentFragment extends Fragment {
         // Dołączamy ViewPager do TabLayout
         tabLayout.setupWithViewPager(pager);
 
-        //stworzenie  adapetar
+        //stworzenie View.OnClickListener  adapetar
         FragmentStatePagerAdapter adapter = new SectionsPagerAdapter(getChildFragmentManager());
 
         //dodanie adaptera do pagera

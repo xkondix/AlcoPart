@@ -4,8 +4,9 @@
     package="com.konradkowalczyk.alcopart">
     <!-- scaner kodow kreskowych -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +17,8 @@
         android:roundIcon="@mipmap/beer_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanActivity"
-            ></activity>
+        <activity android:name=".fragments.alco.DialogAddAlco"></activity>
+        <activity android:name=".ScanActivity" />
         <activity
             android:name=".SearchActivity"
             android:configChanges="orientation"
