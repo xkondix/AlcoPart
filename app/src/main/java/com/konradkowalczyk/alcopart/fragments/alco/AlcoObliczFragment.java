@@ -145,10 +145,10 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
         //onClick - reakcja na przycisniecie cardView
         adapter.setListener(new RecyclerViewAdapterAlco.Listener() {
-//            @Override
-//            public void onClick(int position) {
-//                System.out.println("dziala");;
-//            }
+            @Override
+            public void onClick(int position) {
+                onClik(position);
+            }
 
             @Override
             public void onDeleteClick(int position) {
@@ -210,6 +210,15 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
     }
 
+    public void onClik(int position)
+    {
+
+        AlcoDialogFragment dialog = new AlcoDialogFragment(position);
+        dialog.setTargetFragment(AlcoObliczFragment.this, 1);
+        dialog.show(getFragmentManager(), "MyCustomDialog");
+
+    }
+
 
 
 
@@ -218,6 +227,18 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
         data.add(inputData);
         percent.add(inputProcenty);
         ml.add(inputMl);
+        adapter.updateData((GregorianCalendar[])data.toArray(new GregorianCalendar[0]),
+                (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
+        adapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void changePosition(String inputProcenty, String inputMl, GregorianCalendar inputDate, int position) {
+
+        data.set(position,inputDate);
+        percent.set(position,inputProcenty);
+        ml.set(position,inputMl);
         adapter.updateData((GregorianCalendar[])data.toArray(new GregorianCalendar[0]),
                 (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
         adapter.notifyDataSetChanged();

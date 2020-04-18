@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/heading"
             android:layout_marginTop="20dp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:hint="ile procent?"
             android:id="@+id/procenty"/>
 

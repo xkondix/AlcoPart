@@ -24,14 +24,20 @@ import java.util.GregorianCalendar;
  */
 public class AlcoDialogFragment extends DialogFragment {
 
+    private int position = -1;
+
     public AlcoDialogFragment() {
         // Required empty public constructor
     }
 
+    public AlcoDialogFragment(int position) {
+        this.position=position;
+    }
 
 
     public interface OnRespoundSend{
         void respondData(String inputProcenty, String input, GregorianCalendar date);
+        void changePosition(String inputProcenty, String input, GregorianCalendar date,int position);
     }
 
     public OnRespoundSend onRespoundSend;
@@ -90,8 +96,11 @@ public class AlcoDialogFragment extends DialogFragment {
                 System.out.println(year+"/"+month+"/"+day);
                 System.out.println(hour+":"+minutes);
 
-
-                if(!inputProcenty.equals("") && !inputMl.equals("")){
+                if(position!=-1 && !inputProcenty.equals("") && !inputMl.equals(""))
+                {
+                    onRespoundSend.changePosition(inputProcenty,inputMl,date,position);
+                }
+                else if(position==-1 && !inputProcenty.equals("") && !inputMl.equals("")){
 
                     onRespoundSend.respondData(inputProcenty,inputMl,date);
                 }

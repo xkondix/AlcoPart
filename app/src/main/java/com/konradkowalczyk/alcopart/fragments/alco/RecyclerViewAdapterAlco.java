@@ -30,7 +30,7 @@ public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAd
 
     public interface Listener
     {
-       // void onClick(int position);
+        void onClick(int position);
         void onDeleteClick(int position);
     }
 
@@ -105,14 +105,14 @@ public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAd
             }
         });
 
-//        cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (listener != null) {
-//                    listener.onClick(position);
-//                }
-//            }
-//        });
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onClick(position);
+                }
+            }
+        });
     }
 
 
