@@ -21,11 +21,11 @@ import java.util.GregorianCalendar;
 public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAdapterAlco.ViewHolder> {
 
     private Listener listener;
-    private String[] procenty;
-    private String[] ml;
-    private GregorianCalendar[] data;
+    private AlcomatItem[] items;
 
-
+    public RecyclerViewAdapterAlco(AlcomatItem[] items) {
+        this.items=items;
+    }
 
 
     public interface Listener
@@ -47,13 +47,6 @@ public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAd
 
 
 
-    }
-
-    public RecyclerViewAdapterAlco(GregorianCalendar[] data,String[] procenty, String[] ml)
-    {
-        this.procenty=procenty;
-        this.data=data;
-        this.ml=ml;
     }
 
 
@@ -79,19 +72,14 @@ public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAd
     public void onBindViewHolder(@NonNull RecyclerViewAdapterAlco.ViewHolder holder, final int position) {
         final CardView cardView = holder.cardView;
         TextView procentyView = (TextView) cardView.findViewById(R.id.cardViewProcenty);
-        procentyView.setText(procenty[position]+"%");
+        procentyView.setText(items[position].geProcent()+"%");
         TextView mlView = (TextView) cardView.findViewById(R.id.cardViewMl);
-        mlView.setText(ml[position]+"ml");
-
-        GregorianCalendar dataPosition = data[position];
-
-        String dataString = dataPosition.get(Calendar.DAY_OF_MONTH) +"/" +(dataPosition.get(Calendar.MONTH)+1) +"/"+ dataPosition.get(Calendar.YEAR);
-        String timeString = dataPosition.get(Calendar.HOUR)+":"+dataPosition.get(Calendar.MINUTE)+" "+(Integer.valueOf(dataPosition.get(Calendar.AM_PM)) == 0 ? "am" : "pm");
+        mlView.setText(items[position].getMl()+"ml");
 
         TextView dateview = (TextView) cardView.findViewById(R.id.cardViewData);
-        dateview.setText(dataString);
+        dateview.setText(items[position].getData());
         TextView timeview = (TextView) cardView.findViewById(R.id.cardViewTime);
-        timeview.setText(timeString);
+        timeview.setText(items[position].getTime());
 
         ImageButton img =  cardView.findViewById(R.id.delete_alco);
 
@@ -117,16 +105,14 @@ public class RecyclerViewAdapterAlco extends RecyclerView.Adapter<RecyclerViewAd
 
 
 
-    public void updateData(GregorianCalendar[] data,String[] procenty, String[] ml)
+    public void updateData(AlcomatItem[] items)
     {
-        this.procenty=procenty;
-        this.data=data;
-        this.ml=ml;
+        this.items=items;
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return items.length;
     }
 
 

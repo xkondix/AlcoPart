@@ -24,5 +24,6 @@
     <string name="tittle">Send your collect</string>
     <string name="dodajAlco">Dodaj alkochol</string>
     <string name="podajdane">Podaj Dane</string>
+    <string name="oblicz">Oblicz</string>
 
 </resources>

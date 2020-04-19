@@ -1,6 +1,7 @@
 package com.konradkowalczyk.alcopart.fragments.alco;
 
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,8 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.konradkowalczyk.alcopart.R;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -24,9 +29,10 @@ import java.util.List;
 public class AlcoObliczFragment extends Fragment implements View.OnClickListener ,AlcoDialogFragment.OnRespoundSend {
 
     //view
-    private Button addAlco;
+    private Button addAlco,showWynik;
     private ImageButton wiekUp,wiekDown,wagaUp,wagaDown;
     private EditText wiekEdit,wagaEdit;
+    private TextView wypiszWynik;
 
     //zmienne
     private int age = 18;
@@ -34,12 +40,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
     private RecyclerViewAdapterAlco adapter;
 
     //zmienne z dialog
-    private List<String> percent= new ArrayList<String>();
-    private List<String> ml= new ArrayList<String>();
-    private List<GregorianCalendar> data= new ArrayList<>();
-
-
-
+    private List<AlcomatItem> items= new ArrayList<>();
 
 
 
@@ -60,11 +61,16 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_alco_oblicz, container, false);
 
+        wypiszWynik = view.findViewById(R.id.wynik);
+
         wiekEdit = view.findViewById(R.id.WiekZmien);
         wagaEdit = view.findViewById(R.id.WagaZmien);
 
         addAlco = view.findViewById(R.id.dodaj_alco);
         addAlco.setOnClickListener(this);
+
+        showWynik = view.findViewById(R.id.oblicz);
+        showWynik.setOnClickListener(this);
 
         wiekUp = view.findViewById(R.id.upWiek);
         wiekUp.setOnClickListener(this);
@@ -131,8 +137,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
         RecyclerView menuView = (RecyclerView) view.findViewById(R.id.alco_recycler);
 
         //stworzenie i ustawienie adaptera
-        adapter = new RecyclerViewAdapterAlco((GregorianCalendar[])data.toArray(new GregorianCalendar[data.size()]),
-                (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
+        adapter = new RecyclerViewAdapterAlco((AlcomatItem[])items.toArray(new AlcomatItem[items.size()]));
         menuView.setAdapter(adapter);
 
         //dodanie jak ma wygladac layout (cardView - rodzaj wyswietlania)
@@ -185,6 +190,9 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
                 if(age>0) age--;
                 wiekEdit.setText(Integer.toString(age));
                 break;
+            case R.id.oblicz:
+                Obliczenia();
+                break;
         }
 
     }
@@ -192,11 +200,8 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
     public void removeItem(int position) {
 
-
-        data.remove(position);
-        percent.remove(position);
-        adapter.updateData((GregorianCalendar[])data.toArray(new GregorianCalendar[0]),
-                (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
+        items.remove(position);
+        adapter.updateData((AlcomatItem[])items.toArray(new AlcomatItem[items.size()]));
         adapter.notifyDataSetChanged();
     }
 
@@ -224,11 +229,14 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void respondData(String inputProcenty, String inputMl, GregorianCalendar inputData) {
-        data.add(inputData);
-        percent.add(inputProcenty);
-        ml.add(inputMl);
-        adapter.updateData((GregorianCalendar[])data.toArray(new GregorianCalendar[0]),
-                (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
+        items.add(new AlcomatItem(inputProcenty,inputMl,inputData));
+        Collections.sort(items, new Comparator<AlcomatItem>() {
+            @Override
+            public int compare(AlcomatItem object1, AlcomatItem object2) {
+                return (int) (object1.getGregorian().compareTo(object2.getGregorian()));
+            }
+        });
+        adapter.updateData((AlcomatItem[])items.toArray(new AlcomatItem[items.size()]));
         adapter.notifyDataSetChanged();
 
     }
@@ -236,14 +244,39 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
     @Override
     public void changePosition(String inputProcenty, String inputMl, GregorianCalendar inputDate, int position) {
 
-        data.set(position,inputDate);
-        percent.set(position,inputProcenty);
-        ml.set(position,inputMl);
-        adapter.updateData((GregorianCalendar[])data.toArray(new GregorianCalendar[0]),
-                (String[])percent.toArray(new String[percent.size()]),(String[])ml.toArray(new String[ml.size()]));
+        items.get(position).setGregorian(inputDate);
+        items.get(position).setMl(inputMl);
+        items.get(position).setProcent(inputProcenty);
+        Collections.sort(items, new Comparator<AlcomatItem>() {
+            @Override
+            public int compare(AlcomatItem object1, AlcomatItem object2) {
+                return (int) (object1.getGregorian().compareTo(object2.getGregorian()));
+            }
+        });
+        adapter.updateData((AlcomatItem[])items.toArray(new AlcomatItem[items.size()]));
         adapter.notifyDataSetChanged();
 
     }
+
+    public void Obliczenia()
+    {
+        double etanol = 0;
+        List<Float> prom = new ArrayList<>();
+
+        for(int i = 0; i<items.size();i++)
+        {
+            etanol += Double.parseDouble(items.get(i).geProcent())*Double.parseDouble(items.get(i).getMl())/100* 0.79;
+        }
+
+        wypiszWynik.setText("Wypiles ogólnie "+etanol+"g alkocholu");
+
+        //while()
+
+
+
+
+    }
+
 }
 
 

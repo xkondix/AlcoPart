@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+    android:fillViewport="true"
     tools:context=".fragments.alco.AlcoObliczFragment"
-    android:scrollbars="vertical">
+    >
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    >
+
+
+    <TextView
+        android:id="@+id/wynik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="48dp"
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oblicz"></TextView>
+
+    <Button
+        android:id="@+id/oblicz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/oblicz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alco_recycler"></Button>
 
     <ImageButton
         android:id="@+id/downWaga"
@@ -110,6 +140,7 @@
         android:id="@+id/dodaj_alco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="35dp"
         android:text="@string/dodajAlco"
         app:layout_constraintStart_toStartOf="parent"
@@ -177,9 +208,10 @@
         android:id="@+id/alco_recycler"
         android:layout_width="0dp"
         android:layout_height="100dp"
+        android:layout_marginTop="35dp"
+        android:scrollbars="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dodaj_alco"
-        android:scrollbars="horizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/dodaj_alco" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -190,3 +222,5 @@
         app:layout_constraintGuide_begin="150dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
