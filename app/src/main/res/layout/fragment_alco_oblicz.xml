@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/upWaga" />
 
     <ImageButton
-        android:id="@+id/downWiek"
+        android:id="@+id/downWzrost"
         android:layout_width="23dp"
         android:layout_height="25dp"
         android:layout_marginStart="25dp"
@@ -66,8 +66,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/down"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toEndOf="@+id/WiekZmien"
-        app:layout_constraintTop_toBottomOf="@+id/upWiek" />
+        app:layout_constraintStart_toEndOf="@+id/WzrostZmien"
+        app:layout_constraintTop_toBottomOf="@+id/upWzrost" />
 
 
 
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <TextView
-        android:id="@+id/carViewWiek"
+        android:id="@+id/carViewWaga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -94,20 +94,20 @@
         android:text="Waga"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardviewWysokosc"
+        app:layout_constraintStart_toEndOf="@+id/cardviewWzrost"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"></TextView>
 
 
     <TextView
-        android:id="@+id/cardviewWysokosc"
+        android:id="@+id/cardviewWzrost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="50dp"
-        android:text="Wiek"
+        android:text="Wzrost"
         android:textColor="#000"
-        app:layout_constraintEnd_toStartOf="@+id/carViewWiek"
+        app:layout_constraintEnd_toStartOf="@+id/carViewWaga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"></TextView>
 
@@ -136,28 +136,60 @@
     </RadioGroup>
 
 
+    <RadioGroup
+        android:id="@+id/radioGroupZoladek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/pilemna"
+        app:layout_constraintTop_toBottomOf="@+id/WagaZmien">
+
+        <RadioButton
+            android:id="@+id/pusty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Pusty żołądek"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/polpelny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W połowie pełny żołądek"></RadioButton>
+
+
+        <RadioButton
+            android:id="@+id/pelny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pełny żołądek"></RadioButton>
+    </RadioGroup>
+
+
     <Button
         android:id="@+id/dodaj_alco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="80dp"
         android:text="@string/dodajAlco"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WiekZmien"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/pilemna"></Button>
 
     <EditText
-        android:id="@+id/WiekZmien"
+        android:id="@+id/WzrostZmien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:ems="3"
-        android:hint="wiek"
+        android:hint="@string/wzrost"
         android:inputType="number"
         android:imeOptions="actionDone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardviewWysokosc" />
+        app:layout_constraintTop_toBottomOf="@+id/cardviewWzrost" />
 
 
     <EditText
@@ -171,10 +203,10 @@
         android:inputType="number"
         android:imeOptions="actionDone"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/carViewWiek" />
+        app:layout_constraintTop_toBottomOf="@+id/carViewWaga" />
 
     <ImageButton
-        android:id="@+id/upWiek"
+        android:id="@+id/upWzrost"
         android:layout_width="23dp"
         android:layout_height="25dp"
         android:layout_marginStart="25dp"
@@ -185,8 +217,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/up"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toEndOf="@+id/WiekZmien"
-        app:layout_constraintTop_toBottomOf="@+id/cardviewWysokosc" />
+        app:layout_constraintStart_toEndOf="@+id/WzrostZmien"
+        app:layout_constraintTop_toBottomOf="@+id/cardviewWzrost" />
 
     <ImageButton
         android:id="@+id/upWaga"
@@ -202,7 +234,7 @@
         app:layout_constraintBottom_toTopOf="@+id/downWaga"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/WagaZmien"
-        app:layout_constraintTop_toBottomOf="@+id/carViewWiek" />
+        app:layout_constraintTop_toBottomOf="@+id/carViewWaga" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/alco_recycler"
@@ -220,6 +252,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="150dp" />
+
+    <TextView
+        android:id="@+id/pilemna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="60dp"
+        android:text="Piłem/am na: "
+        android:textColor="#000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WzrostZmien" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,11 +31,11 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
     //view
     private Button addAlco,showWynik;
     private ImageButton wiekUp,wiekDown,wagaUp,wagaDown;
-    private EditText wiekEdit,wagaEdit;
+    private EditText wzrostEdit,wagaEdit;
     private TextView wypiszWynik;
 
     //zmienne
-    private int age = 18;
+    private int heigh = 0;
     private int weigh = 0;
     private RecyclerViewAdapterAlco adapter;
 
@@ -63,7 +63,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
         wypiszWynik = view.findViewById(R.id.wynik);
 
-        wiekEdit = view.findViewById(R.id.WiekZmien);
+        wzrostEdit = view.findViewById(R.id.WzrostZmien);
         wagaEdit = view.findViewById(R.id.WagaZmien);
 
         addAlco = view.findViewById(R.id.dodaj_alco);
@@ -72,10 +72,10 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
         showWynik = view.findViewById(R.id.oblicz);
         showWynik.setOnClickListener(this);
 
-        wiekUp = view.findViewById(R.id.upWiek);
+        wiekUp = view.findViewById(R.id.upWzrost);
         wiekUp.setOnClickListener(this);
 
-        wiekDown = view.findViewById(R.id.downWiek);
+        wiekDown = view.findViewById(R.id.downWzrost);
         wiekDown.setOnClickListener(this);
 
         wagaUp = view.findViewById(R.id.upWaga);
@@ -109,7 +109,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
         });
 
-        wiekEdit.addTextChangedListener(new TextWatcher() {
+        wzrostEdit.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,7 +120,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 try {
-                    age = Integer.valueOf(wiekEdit.getText().toString().trim());
+                    heigh = Integer.valueOf(wzrostEdit.getText().toString().trim());
                 }catch(NumberFormatException e){
                 }
             }
@@ -128,7 +128,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.equals(null)) {
-                    age = 18;
+                    heigh = 0;
                 }
             }
 
@@ -182,13 +182,13 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
                 if(weigh>0) weigh--;
                 wagaEdit.setText(Integer.toString(weigh));
                 break;
-            case R.id.upWiek:
-                age++;
-                wiekEdit.setText(Integer.toString(age));
+            case R.id.upWzrost:
+                heigh++;
+                wzrostEdit.setText(Integer.toString(heigh));
                 break;
-            case R.id.downWiek:
-                if(age>0) age--;
-                wiekEdit.setText(Integer.toString(age));
+            case R.id.downWzrost:
+                if(heigh>0) heigh--;
+                wzrostEdit.setText(Integer.toString(heigh));
                 break;
             case R.id.oblicz:
                 Obliczenia();

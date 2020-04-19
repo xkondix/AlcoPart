@@ -25,5 +25,6 @@
     <string name="dodajAlco">Dodaj alkochol</string>
     <string name="podajdane">Podaj Dane</string>
     <string name="oblicz">Oblicz</string>
+    <string name="wzrost">wzrost</string>
 
 </resources>
