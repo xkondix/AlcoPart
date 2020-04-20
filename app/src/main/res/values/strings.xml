@@ -26,5 +26,6 @@
     <string name="podajdane">Podaj Dane</string>
     <string name="oblicz">Oblicz</string>
     <string name="wzrost">wzrost</string>
+    <string name="wiek">wiek</string>
 
 </resources>

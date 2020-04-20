@@ -58,4 +58,9 @@ public class AlcomatItem {
 
     }
 
+    public Double getGram()
+    {
+        return Double.parseDouble(geProcent())*Double.parseDouble(getMl())/100* 0.79;
+    }
+
 }
