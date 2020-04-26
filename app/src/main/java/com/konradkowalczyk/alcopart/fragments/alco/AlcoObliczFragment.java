@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -300,7 +303,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
 
         AlcoDialogFragment dialog = new AlcoDialogFragment(position);
         dialog.setTargetFragment(AlcoObliczFragment.this, 1);
-        dialog.show(getFragmentManager(), "MyCustomDialog");
+        dialog.show(getFragmentManager(), "Dialog1");
 
     }
 
@@ -348,51 +351,64 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
             etanol += Double.parseDouble(items.get(i).geProcent())*Double.parseDouble(items.get(i).getMl())/100* 0.79;
         }
 
-        wypiszWynik.setText("Wypiles ogólnie "+etanol+"g alkocholu");
 
 
-        //zmienne
-       // double wchłanianie=items.get(0).getGram()/żołądek;
+        //zmienne obliczeniowe
+        double wchłanianie=items.get(0).getGram()/żołądek;
         double gram = items.get(0).getGram();
         double actualGram = 0;
-        double promile=0;
+        double promile;
         double maxPromil=0;
         double woda = liczPłyny();
         int itemSelect = 1;
+        //czasowe zmienne
         GregorianCalendar start = items.get(0).getGregorian();
-        GregorianCalendar prowadzenieAuta;
-        GregorianCalendar trzezwosc;
+        Date prowadzenieAuta=null;
+        Date maxPromileTime=null;
 
 
-//         int i = 3600;
-//
-//
-//
-//        do {
-//            if (itemSelect < items.size() && start.after(items.get(itemSelect).getGregorian())) {
-//                gram += items.get(itemSelect).getGram();
-//                wchłanianie = gram / żołądek;
-//                if (itemSelect + 1 < items.size()) itemSelect++;
-//                ;
-//            }
-//
-//            if (gram > 0) actualGram += wchłanianie; //ilość gramów we krwi
-//            if (gram > 0) gram -= wchłanianie; // ile gramów do wchłonienia
-//            if (actualGram > 0)
-//                actualGram -= ((10 * actualGram) / (4.2 + actualGram)) / 60; // zmniejszane co minute stężenie
-//            promile = actualGram / woda;
-//            start.add(Calendar.MINUTE, 1);
-//            i--;
-//            System.out.println(i);
-//            System.out.println("gramy -> "+gram);
-//            System.out.println("aktualne -> "+actualGram);
-//            System.out.println("promile -> "+promile);
-//            System.out.println(start.getTime());
-//            System.out.println("------------------");
-//
-//        }while (i>0);
+        do {
+            if (itemSelect < items.size() && start.after(items.get(itemSelect).getGregorian())) {
+                gram += items.get(itemSelect).getGram();
+                wchłanianie = gram / żołądek;
+                itemSelect++;
 
-        //}while(start.before(items.get(items.size()-1).getGregorian()) || promile>0.0);
+            }
+
+            if (gram > 0) actualGram += wchłanianie; //ilość gramów we krwi
+            if (gram > 0) gram -= wchłanianie; // ile gramów do wchłonienia
+            if (actualGram > 0 )
+                actualGram -= ((10 * actualGram) / (4.2 + actualGram)) / 60; // zmniejszane co minute stężenie
+            promile = actualGram / woda;
+            start.add(Calendar.MINUTE, 1);
+
+            if(promile < 0.2 && prowadzenieAuta == null && start.after(items.get((items.size() - 1)).getGregorian()))
+            {
+                System.out.println("xd");
+                prowadzenieAuta = start.getTime();
+            }
+
+
+            if(maxPromil<promile)
+            {
+                maxPromil = promile;
+                maxPromileTime = start.getTime();
+            }
+
+
+
+        }while(start.before(items.get(items.size()-1).getGregorian()) || promile>0.0);
+
+
+
+
+        wypiszWynik.setText("Wypiles ogólnie "+etanol+"g alkocholu\nBędziesz trzeźwy o godzinie "
+        +start.getTime()+"\nTwoje maxymalne promile wynoszą "+maxPromil+" o godzinie "+
+                (maxPromileTime!=null ? maxPromileTime : "brak")
+        +"\nBędziesz mógł prowadzić o "+(prowadzenieAuta!=null ? prowadzenieAuta : "brak"));
+
+        crateDialog(start);
+
 
 
 
@@ -404,7 +420,7 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
         double płyny=0;
         double tłuszcz = 0;
         boolean nadwaga = false;
-        double BMI = weigh/((heigh/100)*(heigh/100));
+        double BMI = weigh/((((double)heigh)/100)*(((double)heigh)/100));
 
         if(płeć.equals("k"))
         {
@@ -651,14 +667,20 @@ public class AlcoObliczFragment extends Fragment implements View.OnClickListener
         }
         else
         {
-            if(płeć.equals("k")) płyny = ((weigh)*0.6)-(tłuszcz*0.15);
-            else płyny = ((weigh)*0.7)-(tłuszcz*0.15);
+            if(płeć.equals("k")) płyny = ((weigh)*0.6);
+            else płyny = ((weigh)*0.7);
         }
 
         System.out.println(BMI);
         System.out.println(płyny);
         System.out.println(tłuszcz);
         return płyny;
+    }
+
+    public void crateDialog(GregorianCalendar calendar)
+    {
+       // PowiadomienieDialog dialog = new PowiadomienieDialog(calendar);
+        //dialog.show(getFragmentManager(), "Dialog2");
     }
 
 }

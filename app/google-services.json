@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "766168975638",
+    "firebase_url": "https://alkopart-29083.firebaseio.com",
+    "project_id": "alkopart-29083",
+    "storage_bucket": "alkopart-29083.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766168975638:android:bb6ec89e77b46accebe837",
+        "android_client_info": {
+          "package_name": "com.konradkowalczyk.alcopart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766168975638-54q6glkqj8ip8i3se8ep7gf7crfrqseg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0HCNDNi1Y8JVLFwnZqWW24cZbHZojG1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766168975638-54q6glkqj8ip8i3se8ep7gf7crfrqseg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
