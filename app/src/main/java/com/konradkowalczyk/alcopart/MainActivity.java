@@ -2,6 +2,7 @@ package com.konradkowalczyk.alcopart;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,14 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.konradkowalczyk.alcopart.fragments.FavouriteFragment;
 import com.konradkowalczyk.alcopart.fragments.LibFragment;
 import com.konradkowalczyk.alcopart.fragments.MainFragment;
 import com.konradkowalczyk.alcopart.fragments.SearchFragment;
 import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
 import com.konradkowalczyk.alcopart.fragments.user.LoginFragment;
-import com.konradkowalczyk.alcopart.fragments.user.LogoutFragment;
 import com.konradkowalczyk.alcopart.fragments.user.RegisterFragment;
+import com.konradkowalczyk.alcopart.fragments.user.User;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -80,7 +82,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new RegisterFragment();
                 break;
             case R.id.wyl:
-                fragment = new LogoutFragment();
+                if(User.iflog)
+                {
+                    FirebaseAuth auch = FirebaseAuth.getInstance();
+                    try {
+                        auch.signOut();
+                        User.iflog=false;
+                        Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e) {
+                    }
+                }
                 break;
             case R.id.zal:
                 fragment = new LoginFragment();

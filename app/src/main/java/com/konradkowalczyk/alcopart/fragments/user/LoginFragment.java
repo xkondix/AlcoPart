@@ -82,7 +82,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             if (user.isEmailVerified()) {
 
                                 FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-                                DocumentReference docIdRef = rootRef.collection("yourCollection").document(user.getUid());
+                                DocumentReference docIdRef = rootRef.collection("User").document(user.getUid());
                                 docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
