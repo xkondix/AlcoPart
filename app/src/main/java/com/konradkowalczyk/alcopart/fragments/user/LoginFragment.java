@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,9 +35,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FirebaseFirestore db;
     private EditText email, password;
     private Button log;
+    private TextView status;
 
-    public LoginFragment() {
-
+    public LoginFragment(TextView status) {
+        this.status=status;
     }
 
     @Override
@@ -104,6 +106,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                 });
 
                                 User.iflog = true;
+                                status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
 
 
                             }

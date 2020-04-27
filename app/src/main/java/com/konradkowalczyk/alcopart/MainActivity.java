@@ -2,6 +2,8 @@ package com.konradkowalczyk.alcopart;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private Toolbar toolbar;
+    private TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -45,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.navigator_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //textview w nagłówku
+        View headerView = navigationView.getHeaderView(0);
+        status = (TextView) headerView.findViewById(R.id.status);
+        status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
+
+
 
 
         //stworzenie bazowego fragmentu
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new AlkoPercentFragment();
                 break;
             case R.id.rej:
-                fragment = new RegisterFragment();
+                fragment = new RegisterFragment(status);
                 break;
             case R.id.wyl:
                 if(User.iflog)
@@ -89,12 +100,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         auch.signOut();
                         User.iflog=false;
                         Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show();
+                        status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
                     }catch (Exception e) {
                     }
                 }
                 break;
             case R.id.zal:
-                fragment = new LoginFragment();
+                fragment = new LoginFragment(status);
                 break;
             default:
                 fragment = new MainFragment();

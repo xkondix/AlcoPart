@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,8 +35,11 @@ public class RegisterFragment extends Fragment implements  View.OnClickListener 
     private FirebaseFirestore db;
     private EditText email,password;
     private Button rej;
+    private TextView status;
 
-    public RegisterFragment() {
+
+    public RegisterFragment(TextView status) {
+        this.status=status;
     }
 
     @Override
@@ -89,7 +93,7 @@ public class RegisterFragment extends Fragment implements  View.OnClickListener 
                                             User.password=password.getText().toString().trim();
                                             User.email=email.getText().toString().trim();
                                             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                            ft.replace(R.id.content_frame,new LoginFragment());
+                                            ft.replace(R.id.content_frame,new LoginFragment(status));
                                             ft.commit();
                                             System.out.println("ala ma kota");
                                         } else {
