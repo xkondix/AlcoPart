@@ -39,8 +39,33 @@
             />
 
 
+        <item android:title="____________________"
+            android:checkable="false"></item>
+
+        <item
+            android:id="@+id/rej"
+            android:icon="@mipmap/iconbeer_round"
+            android:title="@string/rej"
+            app:showAsAction="always"
+            />
+
+        <item
+            android:id="@+id/zal"
+            android:icon="@mipmap/iconbeer_round"
+            android:title="@string/zal"
+            app:showAsAction="always"
+            />
+
+        <item
+            android:id="@+id/wyl"
+            android:icon="@mipmap/iconbeer_round"
+            android:title="@string/wyl"
+            app:showAsAction="always"
+            />
+
+
+
         ></group>
 
-    <item android:title="pozostale"></item>
 
 </menu>

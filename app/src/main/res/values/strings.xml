@@ -27,5 +27,8 @@
     <string name="oblicz">Oblicz</string>
     <string name="wzrost">wzrost</string>
     <string name="wiek">wiek</string>
+    <string name="rej">Rejestruj</string>
+    <string name="zal">zaloguj</string>
+    <string name="wyl">Wyloguj</string>
 
 </resources>

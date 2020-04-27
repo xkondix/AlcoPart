@@ -1,5 +1,8 @@
 package com.konradkowalczyk.alcopart;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,16 +12,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.ImageView;
-
 import com.google.android.material.navigation.NavigationView;
-import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
 import com.konradkowalczyk.alcopart.fragments.FavouriteFragment;
 import com.konradkowalczyk.alcopart.fragments.LibFragment;
 import com.konradkowalczyk.alcopart.fragments.MainFragment;
 import com.konradkowalczyk.alcopart.fragments.SearchFragment;
+import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
+import com.konradkowalczyk.alcopart.fragments.user.LoginFragment;
+import com.konradkowalczyk.alcopart.fragments.user.LogoutFragment;
+import com.konradkowalczyk.alcopart.fragments.user.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,6 +75,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.trzeFrag:
                 fragment = new AlkoPercentFragment();
+                break;
+            case R.id.rej:
+                fragment = new RegisterFragment();
+                break;
+            case R.id.wyl:
+                fragment = new LogoutFragment();
+                break;
+            case R.id.zal:
+                fragment = new LoginFragment();
                 break;
             default:
                 fragment = new MainFragment();

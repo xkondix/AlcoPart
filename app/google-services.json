@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "766168975638-utgka3o69mlom6fqt3fcn2e22dhsjept.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.konradkowalczyk.alcopart",
+            "certificate_hash": "738ef446af72b73d3b3cf0e90d1b5fff043e2d38"
+          }
+        },
+        {
           "client_id": "766168975638-54q6glkqj8ip8i3se8ep7gf7crfrqseg.apps.googleusercontent.com",
           "client_type": 3
         }
