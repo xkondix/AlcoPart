@@ -14,6 +14,8 @@ import com.konradkowalczyk.alcopart.R;
  */
 public class EditFragment extends Fragment {
 
+
+
     public EditFragment() {
         // Required empty public constructor
     }

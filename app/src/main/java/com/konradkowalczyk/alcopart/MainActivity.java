@@ -22,6 +22,7 @@ import com.konradkowalczyk.alcopart.fragments.LibFragment;
 import com.konradkowalczyk.alcopart.fragments.MainFragment;
 import com.konradkowalczyk.alcopart.fragments.SearchFragment;
 import com.konradkowalczyk.alcopart.fragments.alco.AlkoPercentFragment;
+import com.konradkowalczyk.alcopart.fragments.user.EditFragment;
 import com.konradkowalczyk.alcopart.fragments.user.LoginFragment;
 import com.konradkowalczyk.alcopart.fragments.user.RegisterFragment;
 import com.konradkowalczyk.alcopart.fragments.user.User;
@@ -107,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.zal:
                 fragment = new LoginFragment(status);
+                break;
+
+            case R.id.profil:
+                fragment = new EditFragment();
                 break;
             default:
                 fragment = new MainFragment();

@@ -29,13 +29,14 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener,NickDialogFragment.OnSend {
 
     private FirebaseAuth auch;
     private FirebaseFirestore db;
     private EditText email, password;
     private Button log;
     private TextView status;
+    private FirebaseUser user;
 
     public LoginFragment(TextView status) {
         this.status=status;
@@ -80,7 +81,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     .addOnCompleteListener(getActivity(), new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-                            final FirebaseUser user = auch.getCurrentUser();
+                            user = auch.getCurrentUser();
                             if (user.isEmailVerified()) {
 
                                 FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -92,21 +93,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                             DocumentSnapshot document = task.getResult();
                                             if (document.exists()) {
                                                 Toast.makeText(getActivity(),"Zalogowano",Toast.LENGTH_SHORT).show();
+                                                User.iflog = true;
+                                                status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
                                             } else {
-                                                Map map = new HashMap<String, Object>();
-                                                map.put("Nick", "Konrad");
-                                                map.put("Email", email.getText().toString().trim());
-                                                map.put("password", password.getText().toString().trim());
-                                                map.put("Data", new Timestamp(new Date()));
-                                                db.collection("User").document(user.getUid()).set(map);
-                                                Toast.makeText(getActivity(),"Gratuluje 1 loginu",Toast.LENGTH_SHORT).show();
+                                                NickDialogFragment dialog = new NickDialogFragment();
+                                                dialog.setTargetFragment(LoginFragment.this, 1);
+                                                dialog.show(getFragmentManager(), "Dialog2");
                                             }
                                         }
                                     }
                                 });
 
-                                User.iflog = true;
-                                status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
 
 
                             }
@@ -120,6 +117,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     });
         }
 
+    @Override
+    public void respondData(String nick) {
+        Map map = new HashMap<String, Object>();
+        map.put("Nick", nick);
+        map.put("Email", email.getText().toString().trim());
+        map.put("password", password.getText().toString().trim());
+        map.put("Data", new Timestamp(new Date()));
+        db.collection("User").document(user.getUid()).set(map);
+        Toast.makeText(getActivity(),"Gratuluje 1 loginu",Toast.LENGTH_SHORT).show();
+        User.iflog = true;
+        status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
     }
+}
 
 

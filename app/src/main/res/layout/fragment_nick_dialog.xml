@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp"
+    tools:context=".fragments.user.NickDialogFragment"
+    >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Podaj Nick"
+            android:layout_marginLeft="2dp"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:id="@+id/heading"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            android:hint="podaj nick"
+            android:id="@+id/nick"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/nick"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="2dp"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:id="@+id/okNick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANULUJ"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/nick"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="2dp"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:id="@+id/cancelNick"/>
+
+    </RelativeLayout>
+
+
+

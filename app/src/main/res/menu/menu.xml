@@ -63,6 +63,13 @@
             app:showAsAction="always"
             />
 
+        <item
+            android:id="@+id/profil"
+            android:icon="@mipmap/iconbeer_round"
+            android:title="@string/profil"
+            app:showAsAction="always"
+            />
+
 
 
         ></group>
