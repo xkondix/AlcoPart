@@ -6,16 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.konradkowalczyk.alcopart.AlcoDatabaseHelper;
 import com.konradkowalczyk.alcopart.AlcoViewActivity;
@@ -24,7 +22,6 @@ import com.konradkowalczyk.alcopart.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.DataFormatException;
 
 
 /**
@@ -36,6 +33,7 @@ public class MainFragment extends Fragment {
     private String[] nameAlco;
     private Integer[] idIntent;
     private int[] resId;
+    private List<String> resString = new ArrayList<String>();
     private String[] brandAlco;
 
     //baza danych
@@ -78,7 +76,7 @@ public class MainFragment extends Fragment {
                     id.add(cursor.getInt(0));
                     name.add(cursor.getString(1));
                     brand.add(cursor.getString(2));
-                    res.add(cursor.getInt(3));
+                    resString.add(cursor.getString(3));
 
                     if (!cursor.moveToNext()) {
                         break;
@@ -95,9 +93,9 @@ public class MainFragment extends Fragment {
             brandAlco =  brand.toArray(new String[brand.size()]);
             //resId = res.toArray(new Integer[res.size()]);
 
-            resId = new int[res.size()];
-            for(int i = 0; i < res.size(); i++) {
-                resId[i] = res.get(i);
+            resId = new int[resString.size()];
+            for(int i = 0; i < resString.size(); i++) {
+                resId[i] =  getActivity().getResources().getIdentifier(resString.get(i), "drawable", getActivity().getPackageName());
             }
 
             db.close();

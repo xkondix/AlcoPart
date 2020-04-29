@@ -1,6 +1,5 @@
 package com.konradkowalczyk.alcopart.fragments;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,12 +7,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.konradkowalczyk.alcopart.AlcoDatabaseHelper;
 import com.konradkowalczyk.alcopart.AlcoViewActivity;
@@ -47,6 +45,7 @@ public class LibFragment extends Fragment {
 
     //łatwiej dodawać do list
     private List<Integer> res = new ArrayList<>();
+    private List<String> resString = new ArrayList<String>();
     private List<String> name = new ArrayList<>();
     private List<Integer> id = new ArrayList<>();
     private List<String> brand = new ArrayList<>();
@@ -180,6 +179,7 @@ public class LibFragment extends Fragment {
     {
 
         res = new ArrayList<>();
+        resString = new ArrayList<String>();
         name = new ArrayList<>();
         id = new ArrayList<>();
         brand = new ArrayList<>();
@@ -206,7 +206,7 @@ public class LibFragment extends Fragment {
                         id.add(cursor.getInt(0));
                         name.add(cursor.getString(1));
                         brand.add(cursor.getString(2));
-                        res.add(cursor.getInt(3));
+                        resString.add(cursor.getString(3));
 
                     }while(cursor.moveToNext());
                 }
@@ -219,9 +219,9 @@ public class LibFragment extends Fragment {
             idIntent = id.toArray(new Integer[id.size()]);
             brandAlco = brand.toArray(new String[brand.size()]);
 
-            resId = new int[res.size()];
-            for (int i = 0; i < res.size(); i++) {
-                resId[i] = res.get(i);
+            resId = new int[resString.size()];
+            for (int i = 0; i < resString.size(); i++) {
+                resId[i] =  this.getResources().getIdentifier(resString.get(i), "drawable", getActivity().getPackageName());
             }
 
             db.close();

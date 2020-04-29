@@ -1,7 +1,5 @@
 package com.konradkowalczyk.alcopart;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AlcoViewActivity extends AppCompatActivity {
 
@@ -53,7 +53,7 @@ public class AlcoViewActivity extends AppCompatActivity {
               String percent = cursor.getString(5);
               boolean favourite = (cursor.getInt(6) == 1);
               boolean collect = (cursor.getInt(7) == 1);
-              int photoId = cursor.getInt(8);
+              String photoId = cursor.getString(8);
 
 
             //dodawanie wartosci do xml
@@ -79,7 +79,7 @@ public class AlcoViewActivity extends AppCompatActivity {
             a.setText("wypite - " + (collect ? "tak" : "nie"));
 
             ImageView pA = findViewById(R.id.photo_alco);
-            pA.setImageResource(photoId);
+            pA.setImageResource(getResources().getIdentifier(String.valueOf(photoId), "drawable", getPackageName()));
             pA.setContentDescription(name);
 
             //ustainie CheckBoxa
