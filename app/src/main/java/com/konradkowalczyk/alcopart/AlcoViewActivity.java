@@ -8,16 +8,35 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.konradkowalczyk.alcopart.fragments.user.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlcoViewActivity extends AppCompatActivity {
 
     public static final String EXTRA_DRINKID = "drinkID";
+    private RatingBar ratingBar;
+    private Button recenzja;
+    private int alcoId;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +44,7 @@ public class AlcoViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alco_view);
 
         //pobieranie id alko z intencji
-        int alcoId = (Integer) getIntent().getExtras().get(EXTRA_DRINKID);
+        alcoId = (Integer) getIntent().getExtras().get(EXTRA_DRINKID);
 
         //tworzenie kursora
 
@@ -89,6 +108,10 @@ public class AlcoViewActivity extends AppCompatActivity {
             cursor.close();
             db.close();
 
+            recenzja = findViewById(R.id.recenzja);
+            ratingBar = findViewById(R.id.stars);
+
+
 
         }
         } catch (SQLiteException e)
@@ -100,11 +123,40 @@ public class AlcoViewActivity extends AppCompatActivity {
 
     }
 
-    public void  onFavouriteClicked(View view)
-    {
-        int alcoId = (Integer) getIntent().getExtras().get(EXTRA_DRINKID);
-        new UpdateAlco().execute(alcoId);
+        public void  onFavouriteClicked(View view)
+        {
+            int alcoId = (Integer) getIntent().getExtras().get(EXTRA_DRINKID);
+            new UpdateAlco().execute(alcoId);
 
+
+        }
+
+        public void onRecenzjaClicked(View view)
+        {
+            AlcoRecenzjaFragment dialog = new AlcoRecenzjaFragment(ratingBar.getRating(),alcoId,text);
+            dialog.show(this.getSupportFragmentManager(), "Dialog3");
+        }
+
+        @Override
+        public void onStart()
+        {
+            super.onStart();
+
+            if(User.iflog)
+            {
+                if(!ratingBar.isEnabled())
+                {
+                    ratingBar.setIsIndicator(false);
+                    recenzja.setEnabled(true);
+                }
+
+                new FireRec().execute();
+            }
+            else
+            {
+                ratingBar.setIsIndicator(true);
+                recenzja.setEnabled(false);
+            }
 
         }
 
@@ -151,6 +203,73 @@ public class AlcoViewActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    private class FireRec extends AsyncTask<Void,Void,Boolean>
+    {
+        private FirebaseAuth auth;
+        private FirebaseUser user;
+        private FirebaseFirestore db;
+
+        @Override
+        protected void onPreExecute()
+        {
+            auth = FirebaseAuth.getInstance();
+            user = auth.getCurrentUser();
+            db = FirebaseFirestore.getInstance();
+
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+
+            try {
+                FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+                DocumentReference docIdRef = rootRef.collection("User").document(user.getUid());
+                docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Map map = new HashMap<String, Object>();
+
+                                if (document.get("Recenzja"+alcoId) != null) {
+
+                                    map = task.getResult().getData();
+                                    Map map2 = (Map) map.get("Recenzja"+alcoId);
+                                    ratingBar.setRating( Float.parseFloat((String) map2.get("Ocena")));
+                                    text = (String) map2.get("Recenzja");
+
+
+                                }
+
+
+                                }
+                            } else {
+
+                                text="";
+
+                            }
+                        }
+                });
+
+                return true;
+
+
+            }catch (SQLiteException e) {
+                return false;
+            }
+        }
+
+        public void onPostExecute(Boolean success)
+        {
+
+        }
+    }
+
 
 }
 

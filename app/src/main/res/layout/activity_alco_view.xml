@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,60 +8,110 @@
     android:layout_margin="15dp"
     tools:context=".AlcoViewActivity">
 
+
     <ImageView
+
         android:id="@+id/photo_alco"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:scaleType="fitStart"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
         ></ImageView>
+
+
+    <RatingBar
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/photo_alco"
+        android:layout_gravity="center_vertical"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="0.5"/>
+
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/recenzja"
+                android:layout_margin="10dp"
+                android:layout_toEndOf="@+id/photo_alco"
+                android:layout_below="@+id/stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:colorBackground"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/recenzja"
+                android:onClick="onRecenzjaClicked"
+                ></Button>
+
+
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/photo_alco"
         ></TextView>
     <TextView
         android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+
         ></TextView>
 
     <TextView
         android:id="@+id/brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/type"
+
         ></TextView>
 
     <TextView
         android:id="@+id/pojemnosc"
         android:layout_width="wrap_content"
+        android:layout_below="@+id/brand"
+
         android:layout_height="wrap_content"
         ></TextView>
 
     <TextView
         android:id="@+id/percent"
+        android:layout_below="@+id/pojemnosc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></TextView>
 
     <TextView
         android:id="@+id/kod"
+        android:layout_below="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></TextView>
 
     <TextView
         android:id="@+id/kolekcja"
+        android:layout_below="@+id/kod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></TextView>
 
     <CheckBox
         android:id="@+id/favourite"
+        android:layout_below="@+id/kolekcja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favourite"
         android:onClick="onFavouriteClicked"
         ></CheckBox>
 
-</LinearLayout>
+
+
+</RelativeLayout>

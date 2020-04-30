@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState(); //synchronizacja szuflad
 
         NavigationView navigationView = findViewById(R.id.navigator_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(User.iflog)
                 {
                     FirebaseAuth auch = FirebaseAuth.getInstance();
-                    try {
+                    try{
                         auch.signOut();
                         User.iflog=false;
                         Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show();
