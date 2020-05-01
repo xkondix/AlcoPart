@@ -1,5 +1,6 @@
 package com.konradkowalczyk.alcopart;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,8 +49,15 @@ public class AlcoRecenzjaFragment extends DialogFragment {
 
     public AlcoRecenzjaFragment(){}
 
+    public interface Refresh{
+        void refres(float s);
+    }
+
+    public Refresh ref;
+
     private TextView ok, cancel;
     private EditText rec;
+    private RatingBar starDialog;
 
 
     @Nullable
@@ -61,8 +70,11 @@ public class AlcoRecenzjaFragment extends DialogFragment {
         ok = view.findViewById(R.id.okRec);
         cancel = view.findViewById(R.id.cancelRec);
         rec = view.findViewById(R.id.rec);
+        starDialog= view.findViewById(R.id.starsDialog);
+
 
         rec.setText((recenzja.trim().length()==0 ? "" : recenzja));
+        starDialog.setRating(star);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +89,8 @@ public class AlcoRecenzjaFragment extends DialogFragment {
 
                 //zmienne
                 String recenzja = rec.getText().toString();
-                new FireRec().execute(star);
+                ref.refres(star);
+                new FireRec().execute(starDialog.getRating());
 
 
                 getDialog().dismiss();
@@ -142,6 +155,7 @@ public class AlcoRecenzjaFragment extends DialogFragment {
                                     db.collection("User").document(user.getUid())
                                             .set(map, SetOptions.merge());
 
+
                                 }
                             } else {
 
@@ -161,6 +175,15 @@ public class AlcoRecenzjaFragment extends DialogFragment {
         public void onPostExecute(Boolean success)
         {
 
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            ref = (Refresh) getActivity();
+        }catch (ClassCastException e){
         }
     }
 

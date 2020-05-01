@@ -17,10 +17,24 @@
         android:textColor="#000"
         android:id="@+id/headingRec"/>
 
+    <RatingBar
+        android:id="@+id/starsDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/photo_alco"
+        android:layout_gravity="center_vertical"
+        android:isIndicator="false"
+        android:layout_below="@+id/headingRec"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="0.5"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headingRec"
+        android:layout_below="@id/starsDialog"
         android:layout_marginTop="20dp"
         android:inputType="textMultiLine"
         android:ems="20"
@@ -32,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:layout_below="@+id/rec"
         android:layout_alignParentRight="true"
         android:layout_marginRight="2dp"
@@ -44,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ANULUJ"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:layout_below="@+id/rec"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="2dp"

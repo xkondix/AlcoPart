@@ -42,7 +42,7 @@ import java.util.Set;
 public class MainFragment extends Fragment {
 
 //    //tablice
-      private List<HelperObj> helper = new ArrayList<>();
+      private List<HelperObj> helper;
       private Set<String> set = new HashSet<>();
 
     private RecyclerViewMain adapter;
@@ -122,6 +122,7 @@ public class MainFragment extends Fragment {
         @Override
         protected void onPreExecute()
         {
+            helper = new ArrayList<>();
             auth = FirebaseAuth.getInstance();
             user = auth.getCurrentUser();
             db = FirebaseFirestore.getInstance();

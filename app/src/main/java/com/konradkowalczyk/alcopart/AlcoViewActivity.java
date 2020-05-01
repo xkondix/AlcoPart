@@ -25,18 +25,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.konradkowalczyk.alcopart.fragments.main.HelperObj;
 import com.konradkowalczyk.alcopart.fragments.user.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlcoViewActivity extends AppCompatActivity {
+public class AlcoViewActivity extends AppCompatActivity implements AlcoRecenzjaFragment.Refresh {
 
     public static final String EXTRA_DRINKID = "drinkID";
     private RatingBar ratingBar;
     private Button recenzja;
+    private TextView multiline;
     private int alcoId;
     private String text;
+    private float rating=0;
+    private Map comment = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +116,7 @@ public class AlcoViewActivity extends AppCompatActivity {
 
             recenzja = findViewById(R.id.recenzja);
             ratingBar = findViewById(R.id.stars);
+            multiline = findViewById(R.id.recmulti);
 
 
 
@@ -133,32 +140,42 @@ public class AlcoViewActivity extends AppCompatActivity {
 
         public void onRecenzjaClicked(View view)
         {
-            AlcoRecenzjaFragment dialog = new AlcoRecenzjaFragment(ratingBar.getRating(),alcoId,text);
-            dialog.show(this.getSupportFragmentManager(), "Dialog3");
+            AlcoRecenzjaFragment dialog = new AlcoRecenzjaFragment(rating,alcoId,text);
+            dialog.show(getSupportFragmentManager(), "Dialog3");
+
         }
 
         @Override
         public void onStart()
         {
             super.onStart();
+            new FireComments().execute();
+
 
             if(User.iflog)
             {
-                if(!ratingBar.isEnabled())
+                if(!recenzja.isEnabled())
                 {
-                    ratingBar.setIsIndicator(false);
                     recenzja.setEnabled(true);
                 }
 
                 new FireRec().execute();
+
             }
             else
             {
-                ratingBar.setIsIndicator(true);
                 recenzja.setEnabled(false);
             }
 
         }
+
+    @Override
+    public void refres(float s) {
+        rating=s;
+        System.out.println("--------------------------------------------");
+        //new FireComments().execute();
+
+    }
 
 
     private class UpdateAlco extends AsyncTask<Integer,Void,Boolean>
@@ -240,8 +257,9 @@ public class AlcoViewActivity extends AppCompatActivity {
 
                                     map = task.getResult().getData();
                                     Map map2 = (Map) map.get("Recenzja"+alcoId);
-                                    ratingBar.setRating( Float.parseFloat((String) map2.get("Ocena")));
+                                    rating = ( Float.parseFloat((String) map2.get("Ocena")));
                                     text = (String) map2.get("Recenzja");
+
 
 
                                 }
@@ -252,8 +270,10 @@ public class AlcoViewActivity extends AppCompatActivity {
 
                                 text="";
 
-                            }
+
                         }
+
+                    }
                 });
 
                 return true;
@@ -270,6 +290,65 @@ public class AlcoViewActivity extends AppCompatActivity {
         }
     }
 
+    private class FireComments extends AsyncTask<Void,Void,Boolean> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+
+            try {
+                FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                firestore.collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String text = "";
+                            float rate = 0;
+                            int srednia=0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> doc = document.getData();
+
+
+                                String nick = (String) doc.get("Nick");
+                                System.out.println("----------------------------------------");
+
+                                for (String key : doc.keySet()) {
+                                    if (key.equals("Recenzja" + alcoId)) {
+                                        Map<String, Object> rec = (Map<String, Object>) doc.get(key);
+                                        HelperObj help = new HelperObj();
+                                        rate+=(Float.parseFloat((String) rec.get("Ocena")));
+                                        text+=nick+" -> "+((String) rec.get("Recenzja"))+"\n";
+                                        srednia++;
+                                    }
+
+
+                                }
+                            }
+
+                            multiline.setText(text);
+                            ratingBar.setRating((srednia>0 ? rate/srednia : 0));
+
+
+                        } else {
+
+                        }
+                    }
+                });
+
+                return true;
+
+
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
 
 }
 
