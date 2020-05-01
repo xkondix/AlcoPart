@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:id="@+id/cardViewAlco"
+    android:layout_margin="7dp"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    app:contentPadding="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="start|top"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/recJPG"
+        ></ImageButton>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recJPG"
+            android:id="@+id/nameBEER"
+            ></TextView>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameBEER"
+        android:textColor="#FFFFFF"
+        android:id="@+id/recTEXT"
+        ></TextView>
+
+        <TextView
+            android:id="@+id/dataRES"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/recTEXT"
+            android:layout_width="wrap_content"
+            android:textColor="#FFFFFF"
+
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <RatingBar
+            android:id="@+id/resSTARS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_marginLeft="40dp"
+            android:layout_toEndOf="@+id/recJPG"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="0.5">
+        </RatingBar>
+
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resSTARS"
+            android:layout_marginLeft="40dp"
+            android:layout_toEndOf="@+id/recJPG"
+
+            >
+            <TextView
+                android:id="@+id/resRES"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:inputType="textMultiLine"
+                ></TextView>
+
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

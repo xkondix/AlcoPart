@@ -1,4 +1,4 @@
-package com.konradkowalczyk.alcopart.fragments;
+package com.konradkowalczyk.alcopart.fragments.Klaser;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,7 +24,6 @@ import com.konradkowalczyk.alcopart.AlcoDatabaseHelper;
 import com.konradkowalczyk.alcopart.AlcoViewActivity;
 import com.konradkowalczyk.alcopart.R;
 import com.konradkowalczyk.alcopart.RecyclerViewAdapter;
-import com.konradkowalczyk.alcopart.ScanActivity;
 
 import java.util.ArrayList;
 import java.util.List;

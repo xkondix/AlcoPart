@@ -1,11 +1,7 @@
-package com.konradkowalczyk.alcopart.fragments;
+package com.konradkowalczyk.alcopart.fragments.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.fragment.app.Fragment;
+
 import com.konradkowalczyk.alcopart.AlcoViewActivity;
 import com.konradkowalczyk.alcopart.R;
-import com.konradkowalczyk.alcopart.SearchActivity;
 
 
 public class SearchFragment extends Fragment implements  View.OnClickListener {

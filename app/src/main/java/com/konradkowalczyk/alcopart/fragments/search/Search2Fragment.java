@@ -1,4 +1,4 @@
-package com.konradkowalczyk.alcopart.fragments;
+package com.konradkowalczyk.alcopart.fragments.search;
 
 import android.content.Intent;
 import android.database.Cursor;

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SearchActivity">>
+    tools:context=".fragments.search.SearchActivity">>
 
     <include
         layout="@layout/toolbar_main"

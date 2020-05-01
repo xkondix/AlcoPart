@@ -23,7 +23,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.konradkowalczyk.alcopart.fragments.user.NickDialogFragment;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -37,19 +36,19 @@ public class AlcoRecenzjaFragment extends DialogFragment {
 
     private float star;
     private int id;
-    private String recenzja;
+    private String recenzja="";
 
     public AlcoRecenzjaFragment(float star, int id,String recenzja) {
         this.star = star;
         this.id=id;
-        this.recenzja=recenzja;
+        if(recenzja!=null)  this.recenzja=recenzja;
+
     }
 
     public AlcoRecenzjaFragment(){}
 
     private TextView ok, cancel;
     private EditText rec;
-    private NickDialogFragment.OnSend onSend;
 
 
     @Nullable
@@ -63,7 +62,7 @@ public class AlcoRecenzjaFragment extends DialogFragment {
         cancel = view.findViewById(R.id.cancelRec);
         rec = view.findViewById(R.id.rec);
 
-        rec.setText(recenzja.equals("") ? "" : recenzja);
+        rec.setText((recenzja.trim().length()==0 ? "" : recenzja));
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +125,7 @@ public class AlcoRecenzjaFragment extends DialogFragment {
                                     map2.put("Data",new Timestamp(new Date()));
                                     map2.put("Ocena", String.valueOf(star));
                                     map2.put("Recenzja",rec.getText().toString().trim());
+                                    map2.put("Id",id);
                                     map.put("Recenzja"+id,map2);
 
                                     db.collection("User").document(user.getUid())
@@ -136,6 +136,7 @@ public class AlcoRecenzjaFragment extends DialogFragment {
                                     map2.put("Data",new Timestamp(new Date()));
                                     map2.put("Ocena", String.valueOf(star));
                                     map2.put("Recenzja",rec.getText().toString().trim());
+                                    map2.put("Id",id);
                                     map.put("Recenzja"+id,map2);
 
                                     db.collection("User").document(user.getUid())

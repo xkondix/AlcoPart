@@ -1,14 +1,13 @@
-package com.konradkowalczyk.alcopart;
+package com.konradkowalczyk.alcopart.fragments.search;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-
-import com.konradkowalczyk.alcopart.fragments.MainFragment;
-import com.konradkowalczyk.alcopart.fragments.Search2Fragment;
+import com.konradkowalczyk.alcopart.R;
 
 public class SearchActivity extends AppCompatActivity {
 

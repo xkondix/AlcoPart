@@ -1,14 +1,8 @@
-package com.konradkowalczyk.alcopart;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+package com.konradkowalczyk.alcopart.fragments.Klaser;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -16,15 +10,19 @@ import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.CheckBox;
 import android.widget.Toast;
-import static android.Manifest.permission.CAMERA;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.zxing.Result;
-import java.util.ArrayList;
-import java.util.List;
+import com.konradkowalczyk.alcopart.AlcoDatabaseHelper;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static android.Manifest.permission.CAMERA;
 
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
