@@ -1,6 +1,6 @@
 # AlcoPart
 
-Screens
+Screenshots
 
 <img width="135" alt="95266427_2607056902906769_944918540564037632_n" src="https://user-images.githubusercontent.com/52525583/80816048-18df4d00-8bcf-11ea-9713-c4426ca3080c.png">
 
