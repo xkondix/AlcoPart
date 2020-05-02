@@ -2,16 +2,20 @@ package com.konradkowalczyk.alcopart.fragments.main;
 
 import android.graphics.drawable.Drawable;
 import android.text.format.DateFormat;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.konradkowalczyk.alcopart.R;
@@ -36,12 +40,12 @@ public class RecyclerViewMain extends RecyclerView.Adapter<RecyclerViewMain.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-
         private CardView cardView;
-
         public ViewHolder(CardView view) {
             super(view);
             this.cardView=view;
+
+
         }
 
 
@@ -87,8 +91,18 @@ public class RecyclerViewMain extends RecyclerView.Adapter<RecyclerViewMain.View
         textData.setText(date);
         TextView textRec = (TextView) cardView.findViewById(R.id.resRES);
         textRec.setText(helperObj[position].getRecenzja());
+        textRec.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+        textRec.setMovementMethod(new ScrollingMovementMethod());
         RatingBar ratingBar = cardView.findViewById(R.id.resSTARS);
         ratingBar.setRating(helperObj[position].getOcena());
+
 
 
         ImageView imageView = cardView.findViewById(R.id.recJPG);
