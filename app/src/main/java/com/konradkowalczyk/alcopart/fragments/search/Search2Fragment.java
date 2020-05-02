@@ -218,8 +218,7 @@ public class Search2Fragment extends Fragment {
         }
         if(!tab[2].equals("None"))
         {
-            map.put("TYPE = ?",String.valueOf(getResources().getIdentifier(tab[2].toLowerCase(), "string",
-                    getContext().getPackageName())));
+            map.put("TYPE = ?",tab[2]);
             counter++;
         }
         if(!tab[3].equals("None"))

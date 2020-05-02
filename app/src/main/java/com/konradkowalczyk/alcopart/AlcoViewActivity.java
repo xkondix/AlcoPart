@@ -86,7 +86,7 @@ public class AlcoViewActivity extends AppCompatActivity implements AlcoRecenzjaF
             n.setText(name);
 
             TextView t = findViewById(R.id.type);
-            t.setText("typ - " + getResources().getString(Integer.parseInt(type)));
+            t.setText("typ - " + type);
 
             TextView b = findViewById(R.id.brand);
             b.setText("marka - " + brand);

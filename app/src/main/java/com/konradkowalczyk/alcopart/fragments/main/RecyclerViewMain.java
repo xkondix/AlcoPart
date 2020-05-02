@@ -83,7 +83,7 @@ public class RecyclerViewMain extends RecyclerView.Adapter<RecyclerViewMain.View
         TextView textData = (TextView) cardView.findViewById(R.id.dataRES);
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(helperObj[position].getData().getSeconds() * 1000L);
-        String date = DateFormat.format("dd-MM-yyyy hh:mm", cal).toString();
+        String date = DateFormat.format("dd-MM-yyyy hh:mm a", cal).toString();
         textData.setText(date);
         TextView textRec = (TextView) cardView.findViewById(R.id.resRES);
         textRec.setText(helperObj[position].getRecenzja());

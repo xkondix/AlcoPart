@@ -45,6 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="@string/szukaj"
+        android:background="?android:colorBackground"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         ></Button>
     <!--    tylko w activity on click zadziala-->
     <!--        android:onClick="omWyszukajClicked"-->

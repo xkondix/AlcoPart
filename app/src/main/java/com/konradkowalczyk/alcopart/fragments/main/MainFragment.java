@@ -24,11 +24,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.rpc.Help;
+import com.google.rpc.HelpOrBuilder;
 import com.konradkowalczyk.alcopart.AlcoDatabaseHelper;
 import com.konradkowalczyk.alcopart.AlcoViewActivity;
 import com.konradkowalczyk.alcopart.R;
+import com.konradkowalczyk.alcopart.fragments.alco.AlcomatItem;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -106,6 +112,12 @@ public class MainFragment extends Fragment {
 
     public void updateView()
     {
+        Collections.sort(helper, new Comparator<HelperObj>() {
+            @Override
+            public int compare(HelperObj object1, HelperObj object2) {
+                return (int) (object2.getData().compareTo(object2.getData()));
+            }
+        });
         adapter.updateData(helper.toArray(new HelperObj[0]));
         adapter.notifyDataSetChanged();
 
