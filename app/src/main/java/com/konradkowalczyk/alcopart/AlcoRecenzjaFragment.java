@@ -89,7 +89,6 @@ public class AlcoRecenzjaFragment extends DialogFragment {
 
                 //zmienne
                 String recenzja = rec.getText().toString();
-                ref.refres(star);
                 new FireRec().execute(starDialog.getRating());
 
 
@@ -157,6 +156,9 @@ public class AlcoRecenzjaFragment extends DialogFragment {
 
 
                                 }
+
+                                ref.refres(star);
+
                             } else {
 
                             }

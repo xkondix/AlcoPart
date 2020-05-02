@@ -115,7 +115,7 @@ public class MainFragment extends Fragment {
         Collections.sort(helper, new Comparator<HelperObj>() {
             @Override
             public int compare(HelperObj object1, HelperObj object2) {
-                return (int) (object2.getData().compareTo(object2.getData()));
+                return (int) (object2.getData().compareTo(object1.getData()));
             }
         });
         adapter.updateData(helper.toArray(new HelperObj[0]));

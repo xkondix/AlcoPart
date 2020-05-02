@@ -172,8 +172,10 @@ public class AlcoViewActivity extends AppCompatActivity implements AlcoRecenzjaF
     @Override
     public void refres(float s) {
         rating=s;
-        System.out.println("--------------------------------------------");
-        //new FireComments().execute();
+        new FireComments().execute();
+        new FireRec().execute();
+
+
 
     }
 
