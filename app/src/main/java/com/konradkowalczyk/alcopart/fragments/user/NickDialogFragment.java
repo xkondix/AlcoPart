@@ -56,19 +56,21 @@ public class NickDialogFragment extends DialogFragment {
             }
         });
 
+        if (nick.getText().toString().trim().equalsIgnoreCase("")) {
+            nick.setError("Nick nie może być pusty");
+        }
+
         ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
+                    //zmienne
+                    if(!nick.getText().toString().trim().equalsIgnoreCase("")){
+                    String pseudo = nick.getText().toString();
+                    onSend.respondData(pseudo);
+                    getDialog().dismiss();}
+                }
+            });
 
-                //zmienne
-                String pseudo = nick.getText().toString();
-
-                onSend.respondData(pseudo);
-
-
-                getDialog().dismiss();
-            }
-        });
 
         return view;
     }

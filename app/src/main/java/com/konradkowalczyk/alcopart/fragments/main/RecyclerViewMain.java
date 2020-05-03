@@ -91,15 +91,19 @@ public class RecyclerViewMain extends RecyclerView.Adapter<RecyclerViewMain.View
         textData.setText(date);
         TextView textRec = (TextView) cardView.findViewById(R.id.resRES);
         textRec.setText(helperObj[position].getRecenzja());
-        textRec.setOnTouchListener(new View.OnTouchListener() {
+        //dodaje scrolowanie tylko w momencie kiedy jest wieksze od view.heigh (zeby mozna bylo klikac w te miejsce)
+        if(helperObj[position].getRecenzja().length()>125) {
+            textRec.setOnTouchListener(new View.OnTouchListener() {
 
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        textRec.setMovementMethod(new ScrollingMovementMethod());
+                public boolean onTouch(View v, MotionEvent event) {
+                    // Disallow the touch request for parent scroll on touch of child view
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                    return false;
+                }
+            });
+            textRec.setMovementMethod(new ScrollingMovementMethod());
+        }
         RatingBar ratingBar = cardView.findViewById(R.id.resSTARS);
         ratingBar.setRating(helperObj[position].getOcena());
 
