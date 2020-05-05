@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="250dp"
+    tools:context=".AlcoRecenzjaFragment"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zmień dane"
+        android:layout_marginLeft="2dp"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:id="@+id/hedingZm"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hedingZm"
+        android:layout_marginTop="20dp"
+        android:inputType="textMultiLine"
+        android:ems="20"
+        android:id="@+id/textZmienDialog"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/textZmienDialog"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="2dp"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:id="@+id/okZmienDialog"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ANULUJ"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/textZmienDialog"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="2dp"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:id="@+id/cancelZmienDialog"/>
+
+</RelativeLayout>
+
+
+

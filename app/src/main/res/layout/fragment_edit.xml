@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.user.EditFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/nicZ"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="35dp"
+        android:text="Nick -> " />
+
+    <TextView
+        android:id="@+id/nickWypis"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="35dp"
+        android:layout_height="wrap_content"
+        android:hint="Zaloguj się, żeby coś zmienić"
+        android:layout_toEndOf="@+id/nicZ"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:text="Zmień"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@id/nickWypis"
+        android:background="?android:colorBackground"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/zmienNick"
+        ></Button>
+
+
+    <TextView
+        android:id="@+id/haslZ"
+        android:layout_below="@+id/nicZ"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="65dp"
+        android:text="Hasło -> " />
+
+    <TextView
+        android:id="@+id/hasłoZmien"
+        android:layout_below="@+id/nickWypis"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="23dp"
+        android:hint="Zaloguj się, żeby coś zmienić"
+        android:layout_marginTop="65dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/haslZ"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/zmienNick"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/hasłoZmien"
+        android:text="Zmień"
+        android:background="?android:colorBackground"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/hButton"></Button>
+
+    <TextView
+        android:id="@+id/emailZ"
+        android:layout_below="@+id/haslZ"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="65dp"
+        android:text="Hasło -> " />
+
+    <TextView
+        android:id="@+id/emailZmien"
+        android:layout_below="@+id/hasłoZmien"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="65dp"
+        android:hint="Zaloguj się, żeby coś zmienić"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/emailZ"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/emailZmien"
+        android:text="Zmień"
+        android:background="?android:colorBackground"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/eButton"></Button>
+
+
+</RelativeLayout>

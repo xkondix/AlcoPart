@@ -215,7 +215,6 @@ public class MainFragment extends Fragment {
 
             alcoDatabaseHelper = new AlcoDatabaseHelper(getActivity());
              db = alcoDatabaseHelper.getReadableDatabase();
-             String[] arr = set.toArray(new String[set.size()]);
 
 
 
