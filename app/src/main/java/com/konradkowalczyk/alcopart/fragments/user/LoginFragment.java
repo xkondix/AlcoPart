@@ -77,44 +77,50 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Nick
 
     public void login() {
 
+        
             auch.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
                     .addOnCompleteListener(getActivity(), new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-                            user = auch.getCurrentUser();
-                            if (user.isEmailVerified()) {
+                            if (task.isSuccessful()) {
+                                user = auch.getCurrentUser();
+                                if (user.isEmailVerified()) {
 
-                                FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-                                DocumentReference docIdRef = rootRef.collection("User").document(user.getUid());
-                                docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Toast.makeText(getActivity(),"Zalogowano",Toast.LENGTH_SHORT).show();
-                                                User.iflog = true;
-                                                status.setText((User.iflog==true ? "Zalogowany" : "Wylogowany"));
-                                            } else {
-                                                NickDialogFragment dialog = new NickDialogFragment();
-                                                dialog.setTargetFragment(LoginFragment.this, 1);
-                                                dialog.show(getFragmentManager(), "Dialog2");
+                                    FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+                                    DocumentReference docIdRef = rootRef.collection("User").document(user.getUid());
+                                    docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    Toast.makeText(getActivity(), "Zalogowano", Toast.LENGTH_SHORT).show();
+                                                    User.iflog = true;
+                                                    status.setText((User.iflog == true ? "Zalogowany" : "Wylogowany"));
+                                                } else {
+                                                    NickDialogFragment dialog = new NickDialogFragment();
+                                                    dialog.setTargetFragment(LoginFragment.this, 1);
+                                                    dialog.show(getFragmentManager(), "Dialog2");
+                                                }
                                             }
                                         }
-                                    }
-                                });
+                                    });
 
 
+                                } else {
+                                    auch.signOut();
+                                    Toast.makeText(getActivity(), "Potwierdz email", Toast.LENGTH_SHORT).show();
 
+                                }
                             }
-                            else
-                            {
-                                auch.signOut();
-                                Toast.makeText(getActivity(),"Potwierdz email",Toast.LENGTH_SHORT).show();
+                            else{
+                                Toast.makeText(getActivity(), "Złe hasło lub email", Toast.LENGTH_SHORT).show();
 
                             }
                         }
+
                     });
+
         }
 
     @Override
